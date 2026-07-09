@@ -78,24 +78,46 @@ Built on top of the Gold layer, covering 60,000+ sales transactions, 18,000+ cus
 ```
 data-warehouse-project/
 │
-├── datasets/               # Raw CSV files (CRM and ERP sources)
+├── datasets/                           # Raw source datasets
+│   ├── source_crm/                     # CRM System extracts
+│   │   ├── cust_info.csv
+│   │   ├── prd_info.csv
+│   │   └── sales_details.csv
+│   └── source_erp/                     # ERP System extracts
+│       ├── CUST_AZ12.csv
+│       ├── LOC_A101.csv
+│       └── PX_CAT_G1V2.csv
 │
-├── docs/                   # Architecture diagrams and documentation
+├── documents/                          # Design diagrams and data governance docs
 │   ├── data_architecture.drawio
-│   ├── data_flow.drawio
-│   ├── data_models.drawio
-│   ├── etl.drawio
+│   ├── data_architecture.drawio.png
 │   ├── data_catalog.md
-│   └── naming-conventions.md
+│   ├── data_flow_diagram.drawio
+│   ├── data_flow_diagram.drawio.png
+│   ├── data_model.drawio
+│   ├── data_model.drawio.png
+│   ├── integration_model.drawio
+│   ├── integration_model.drawio.png
+│   └── naming_conventions.md
 │
-├── scripts/
-│   ├── bronze/             # DDL + load stored procedure for Bronze layer
-│   ├── silver/             # DDL + load stored procedure for Silver layer
-│   └── gold/               # DDL views for Gold layer (dim + fact)
+├── script/                             # SQL scripts organized by pipeline layer
+│   ├── bronze/
+│   │   ├── ddl_bronze.sql              # DDL schema for Bronze tables
+│   │   └── proc_load_bronze.sql        # BULK INSERT stored procedure
+│   ├── Silver/
+│   │   ├── ddl_silver.sql              # DDL schema for Silver tables
+│   │   └── proc_load_silver.sql        # Transformation stored procedure
+│   └── gold/
+│       ├── init_database_sql           # Database & schema initialization script
+│       └── ddl_gold.sql                # Dimension and Fact views
 │
-├── tests/                  # Data quality checks
-├── README.md
-└── .gitignore
+├── tests/                              # Data quality scripts
+│   ├── quality_checks_silver_sql
+│   └── quality_checks_gold.sql
+│
+├── .gitignore
+├── LICENSE
+└── README.md
 ```
 
 ---
